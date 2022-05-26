@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Gps extends StatelessWidget {
-  const Gps({Key? key}) : super(key: key);
+class AtiveGeo extends StatelessWidget {
+  const AtiveGeo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text('mapa'),
+        child: Text('Por favor active el geo localizasr'),
       ),
     );
   }

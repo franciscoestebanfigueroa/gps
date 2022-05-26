@@ -23,11 +23,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'page_0',
-      routes: {
-        'page_0': (_) => const UserStatus(),
-        'page_1': (_) => const Gps()
-      },
+      debugShowCheckedModeBanner: false,
+      home: BlocBuilder<GpsBloc, GpsState>(
+        builder: (context, state) {
+          print(state);
+          return state.permiso && state.isConected
+              ? const Gps()
+              : !state.permiso
+                  ? const UserStatus()
+                  : !state.isConected
+                      ? const AtiveGeo()
+                      : const Gps();
+        },
+      ),
+      //initialRoute: 'page_0',
+      //routes: {
+      //  'page_0': (_) => const UserStatus(),
+      //  'page_1': (_) => const Gps()
+      //},
     );
   }
 }

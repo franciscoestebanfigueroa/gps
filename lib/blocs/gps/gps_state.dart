@@ -14,4 +14,8 @@ class GpsState extends Equatable {
   List<Object> get props =>
       [permiso, isConected]; //compara objetos para saber si dibujar
 
+  @override
+  String toString() {
+    return ('permiso: $permiso ,conexion: $isConected');
+  }
 }

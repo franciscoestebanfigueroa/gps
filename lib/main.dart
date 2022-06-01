@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gps/blocs/Localizacion/localizacion_bloc.dart';
 import 'package:gps/blocs/gps/gps_bloc.dart';
 
 import 'package:gps/scr/scr.dart';
@@ -11,9 +12,10 @@ class MyBloc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [BlocProvider(create: (_) => GpsBloc())],
-        child: const MyApp());
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (context) => GpsBloc()),
+      BlocProvider(create: (context) => LocalizacionBloc())
+    ], child: const MyApp());
   }
 }
 
@@ -27,13 +29,14 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<GpsBloc, GpsState>(
         builder: (context, state) {
           print(state);
-          return state.permiso && state.isConected
-              ? const Gps()
-              : !state.permiso
-                  ? const UserStatus()
-                  : !state.isConected
-                      ? const AtiveGeo()
-                      : const Gps();
+          return //state.allPermisos
+              state.permiso || state.isConected
+                  ? const Gps()
+                  : !state.permiso
+                      ? const UserStatus()
+                      : !state.isConected
+                          ? const AtiveGeo()
+                          : const Gps();
         },
       ),
       //initialRoute: 'page_0',

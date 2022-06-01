@@ -3,6 +3,9 @@ part of 'gps_bloc.dart';
 class GpsState extends Equatable {
   final bool permiso;
   final bool isConected;
+
+  bool get allPermisos => permiso && isConected; //da true cuando ambos son true
+
   const GpsState({required this.permiso, required this.isConected});
 
   GpsState copyWith({bool? permiso, bool? conexion}) {
